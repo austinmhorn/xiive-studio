@@ -1,0 +1,64 @@
+/* =========================================
+   xiive Studio — desktop composition tuning
+   ========================================= */
+
+@media (min-width: 1001px) {
+    .game-card {
+        grid-template-columns: minmax(0, 1.38fr) minmax(430px, 0.92fr);
+    }
+
+    .game-details {
+        min-width: 0;
+        padding: 52px 42px;
+    }
+
+    .basilisk-lockup {
+        gap: 16px;
+    }
+
+    .basilisk-lockup img {
+        width: 68px;
+        height: 68px;
+        flex-basis: 68px;
+        border-radius: 16px;
+    }
+
+    .game-details h3 {
+        font-size: clamp(3.15rem, 4.1vw, 4.65rem);
+        letter-spacing: 0.085em;
+        white-space: nowrap;
+    }
+
+    .game-hook {
+        font-size: clamp(1.35rem, 1.7vw, 1.8rem);
+    }
+
+    .game-description {
+        max-width: 390px;
+    }
+
+    .game-stills {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .game-still,
+    .game-still-wide {
+        min-height: 0;
+        aspect-ratio: 16 / 10;
+    }
+}
+
+@media (min-width: 1450px) {
+    .game-card {
+        grid-template-columns: minmax(0, 1.42fr) minmax(460px, 0.9fr);
+    }
+
+    .game-details {
+        padding-left: 46px;
+        padding-right: 46px;
+    }
+
+    .game-details h3 {
+        font-size: 4.8rem;
+    }
+}
