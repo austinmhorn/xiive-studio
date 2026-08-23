@@ -2,6 +2,15 @@
    xiive Studio — desktop composition tuning
    ========================================= */
 
+.basilisk-card {
+    min-height: 0;
+}
+
+.basilisk-visual {
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+}
+
 @media (min-width: 1001px) {
     .game-card {
         grid-template-columns: minmax(0, 1.34fr) minmax(470px, 0.96fr);
