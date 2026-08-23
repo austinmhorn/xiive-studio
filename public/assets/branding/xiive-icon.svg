@@ -1,1 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" zoomAndPan="magnify" viewBox="0 0 384 383.999986" height="512" preserveAspectRatio="xMidYMid meet" version="1.0"><path fill="#a6a6a6" d="M 377.480469 26.359375 L 240.40625 26.359375 L 193.820312 97.101562 L 145.894531 26.359375 L 4.21875 26.359375 L 119.628906 190.65625 L 0 357.636719 L 143.785156 357.636719 L 191.328125 282.488281 L 239.832031 357.636719 L 384 357.636719 L 262.261719 186.628906 Z M 377.480469 26.359375 " fill-opacity="1" fill-rule="nonzero"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254" fill="none">
+  <title>xiive X logo</title>
+
+  <defs>
+    <linearGradient id="metal" x1="111" y1="200" x2="1142" y2="1053" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D4D8DE"></stop>
+      <stop offset="0.28" stop-color="#BFC4CC"></stop>
+      <stop offset="0.5" stop-color="#D9DDE3"></stop>
+      <stop offset="0.72" stop-color="#C3C8D0"></stop>
+      <stop offset="1" stop-color="#D3D7DD"></stop>
+    </linearGradient>
+
+    <linearGradient id="metal2" x1="118" y1="200" x2="1135" y2="1053" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D7DBE1"></stop>
+      <stop offset="0.22" stop-color="#BEC3CB"></stop>
+      <stop offset="0.5" stop-color="#D7DBE1"></stop>
+      <stop offset="0.78" stop-color="#BEC3CB"></stop>
+      <stop offset="1" stop-color="#D7DBE1"></stop>
+    </linearGradient>
+
+    <style>
+      .blade {
+        fill: url(#metal);
+        stroke: #E7EAF0;
+        stroke-width: 1.2;
+        stroke-linejoin: miter;
+      }
+      .bladeAlt {
+        fill: url(#metal2);
+        stroke: #E7EAF0;
+        stroke-width: 1.2;
+        stroke-linejoin: miter;
+      }
+    </style>
+  </defs>
+
+  <!-- top-left -->
+  <path class="blade" d="M118 200L301 385L395 386L610 599L610 469L342 200H118Z"></path>
+
+  <!-- top-right -->
+  <path class="blade" d="M1135 200L911 200L643 469L643 599L859 385L953 384L1135 200Z"></path>
+
+  <!-- middle-left -->
+  <path class="bladeAlt" d="M190 340L412 628L127 978L287 851L362 851L549 663L556 646L541 611L190 340Z"></path>
+
+  <!-- middle-right -->
+  <path class="bladeAlt" d="M1064 339L711 611L696 647L705 665L891 851L967 852L1126 978L840 627L1064 339Z"></path>
+
+  <!-- bottom-left -->
+  <path class="blade" d="M610 658L383 885L293 885L111 1053L349 1052L610 791V658Z"></path>
+
+  <!-- bottom-right -->
+  <path class="blade" d="M643 658V791L906 1053L1142 1053L961 885H870L643 658Z"></path>
+</svg>
