@@ -1,5 +1,5 @@
 // ==========================================
-// XIIve Studio
+// xiive studio
 // ==========================================
 
 
@@ -23,13 +23,11 @@ const revealElements = document.querySelectorAll(".reveal");
 const revealObserver = new IntersectionObserver(
     (entries) => {
         entries.forEach((entry) => {
-
             if (!entry.isIntersecting) {
                 return;
             }
 
             entry.target.classList.add("visible");
-
             revealObserver.unobserve(entry.target);
         });
     },
@@ -52,7 +50,6 @@ const heroContent = document.querySelector(".hero-content");
 const heroGrid = document.querySelector(".hero-grid");
 
 window.addEventListener("scroll", () => {
-
     if (!hero || !heroContent || !heroGrid) {
         return;
     }
@@ -79,9 +76,7 @@ window.addEventListener("scroll", () => {
 const orb = document.querySelector(".hero-orb-one");
 
 if (orb && window.matchMedia("(pointer: fine)").matches) {
-
     window.addEventListener("mousemove", (event) => {
-
         const x =
             (event.clientX / window.innerWidth - 0.5) * 20;
 
@@ -92,3 +87,51 @@ if (orb && window.matchMedia("(pointer: fine)").matches) {
             `translate(calc(-50% + ${x}px), ${y}px)`;
     });
 }
+
+
+// ------------------------------------------
+// Gameplay video
+// ------------------------------------------
+
+const gameVideos = document.querySelectorAll("[data-game-video]");
+const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+).matches;
+
+gameVideos.forEach((video) => {
+    const visual = video.closest(".game-visual");
+
+    const markVideoReady = () => {
+        visual?.classList.add("video-ready");
+    };
+
+    video.addEventListener("canplay", markVideoReady, { once: true });
+
+    if (video.readyState >= 3) {
+        markVideoReady();
+    }
+
+    if (prefersReducedMotion) {
+        video.pause();
+        return;
+    }
+
+    const videoObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+                    video.play().catch(() => {
+                        // Poster image remains visible if autoplay is unavailable.
+                    });
+                } else {
+                    video.pause();
+                }
+            });
+        },
+        {
+            threshold: [0, 0.35, 1]
+        }
+    );
+
+    videoObserver.observe(video);
+});
