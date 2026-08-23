@@ -4,28 +4,52 @@
 
 @media (min-width: 1001px) {
     .game-card {
-        grid-template-columns: minmax(0, 1.38fr) minmax(430px, 0.92fr);
+        grid-template-columns: minmax(0, 1.34fr) minmax(470px, 0.96fr);
     }
 
     .game-details {
         min-width: 0;
-        padding: 52px 42px;
+        padding: 52px 44px;
     }
 
     .basilisk-lockup {
-        gap: 16px;
+        display: grid;
+        grid-template-columns: 68px minmax(0, 1fr);
+        grid-template-rows: auto auto;
+        column-gap: 16px;
+        row-gap: 18px;
+        align-items: center;
+        margin: auto 0 38px;
     }
 
     .basilisk-lockup img {
+        grid-column: 1;
+        grid-row: 1;
         width: 68px;
         height: 68px;
-        flex-basis: 68px;
+        flex-basis: auto;
         border-radius: 16px;
     }
 
+    .basilisk-lockup > div {
+        display: contents;
+    }
+
+    .basilisk-kicker {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: center;
+        margin: 0;
+    }
+
     .game-details h3 {
-        font-size: clamp(3.15rem, 4.1vw, 4.65rem);
-        letter-spacing: 0.085em;
+        grid-column: 1 / -1;
+        grid-row: 2;
+        width: 100%;
+        margin: 0;
+        font-size: clamp(3.4rem, 4.4vw, 5rem);
+        line-height: 0.9;
+        letter-spacing: 0.08em;
         white-space: nowrap;
     }
 
@@ -50,15 +74,15 @@
 
 @media (min-width: 1450px) {
     .game-card {
-        grid-template-columns: minmax(0, 1.42fr) minmax(460px, 0.9fr);
+        grid-template-columns: minmax(0, 1.38fr) minmax(500px, 0.92fr);
     }
 
     .game-details {
-        padding-left: 46px;
-        padding-right: 46px;
+        padding-left: 48px;
+        padding-right: 48px;
     }
 
     .game-details h3 {
-        font-size: 4.8rem;
+        font-size: 5.15rem;
     }
 }
