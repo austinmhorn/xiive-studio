@@ -8,7 +8,7 @@
 
     <meta
         name="description"
-        content="xiive Studio — independent games built in the dark."
+        content="xiive studio — independent games built in the dark."
     >
 
     <link rel="stylesheet" href="/css/styles.css">
@@ -23,7 +23,7 @@
     ========================== -->
 
     <header class="site-header">
-        <a href="/" class="brand" aria-label="xiive Studio home">
+        <a href="/" class="brand" aria-label="xiive studio home">
             <span class="brand-main">xiive</span>
             <span class="brand-sub">STUDIO</span>
         </a>
@@ -70,7 +70,6 @@
 
                 <a href="#games" class="hero-scroll">
                     <span>Explore</span>
-
                     <div class="scroll-line"></div>
                 </a>
 
@@ -111,41 +110,70 @@
 
             <!-- BASILISK -->
 
-            <article class="game-card reveal">
+            <article class="game-card basilisk-card reveal">
 
-                <div class="game-visual">
+                <div class="game-visual basilisk-visual">
 
-                    <div class="game-visual-placeholder">
+                    <img
+                        class="game-video-fallback"
+                        src="/assets/basilisk/screenshots/basilisk-1.png"
+                        alt=""
+                        aria-hidden="true"
+                    >
 
-                        <div class="cave-glow"></div>
+                    <video
+                        class="game-video"
+                        data-game-video
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        preload="metadata"
+                        poster="/assets/basilisk/screenshots/basilisk-1.png"
+                    >
+                        <source
+                            src="/assets/basilisk/video/basilisk-gameplay.mov"
+                            type="video/quicktime"
+                        >
+                    </video>
 
-                        <div class="game-symbol">
-                            B
-                        </div>
+                    <div class="game-video-shade"></div>
 
-                        <p>
-                            BASILISK GAMEPLAY / ARTWORK
-                        </p>
-
+                    <div class="game-visual-topline">
+                        <span>001 / BASILISK</span>
+                        <span>GAMEPLAY / CURRENT BUILD</span>
                     </div>
 
-                    <div class="game-number">
-                        001
+                    <div class="game-visual-bottomline">
+                        <span>ENTER THE CAVERNS</span>
+
+                        <span class="game-video-state">
+                            <i></i>
+                            MUTED LOOP
+                        </span>
                     </div>
 
                 </div>
 
 
-                <div class="game-details">
+                <div class="game-details basilisk-details">
 
                     <div class="game-meta">
                         <span>IN DEVELOPMENT</span>
                         <span>2026</span>
                     </div>
 
-                    <h3>
-                        BASILISK
-                    </h3>
+                    <div class="basilisk-lockup">
+                        <img
+                            src="/assets/basilisk/logo/basilisk-logo.svg"
+                            alt="Basilisk emblem"
+                        >
+
+                        <div>
+                            <span class="basilisk-kicker">A GAME BY xiive</span>
+                            <h3>BASILISK</h3>
+                        </div>
+                    </div>
 
                     <p class="game-hook">
                         Enter the caves.
@@ -165,7 +193,7 @@
 
                         <a
                             href="/games/basilisk/"
-                            class="button button-primary"
+                            class="button button-primary basilisk-primary"
                         >
                             Explore Basilisk
                             <span>↗</span>
@@ -185,6 +213,47 @@
                 </div>
 
             </article>
+
+
+            <!-- BASILISK STILLS -->
+
+            <div class="game-stills reveal" aria-label="Basilisk screenshots">
+
+                <a
+                    class="game-still game-still-wide"
+                    href="/games/basilisk/"
+                    aria-label="Explore Basilisk"
+                >
+                    <img
+                        src="/assets/basilisk/screenshots/basilisk-1.png"
+                        alt="Basilisk game screenshot"
+                        loading="lazy"
+                    >
+
+                    <span class="game-still-caption">
+                        <b>01</b>
+                        BASILISK / CURRENT BUILD
+                    </span>
+                </a>
+
+                <a
+                    class="game-still"
+                    href="/games/basilisk/"
+                    aria-label="Explore more of Basilisk"
+                >
+                    <img
+                        src="/assets/basilisk/screenshots/basilisk-2.png"
+                        alt="Basilisk game screenshot"
+                        loading="lazy"
+                    >
+
+                    <span class="game-still-caption">
+                        <b>02</b>
+                        DEEPER INTO THE CAVERNS
+                    </span>
+                </a>
+
+            </div>
 
 
             <!-- FUTURE GAME PLACEHOLDER -->
@@ -259,7 +328,7 @@
         <footer class="site-footer">
 
             <div class="footer-brand">
-                xiive Studio
+                xiive studio
             </div>
 
             <div class="footer-links">
@@ -277,7 +346,7 @@
             </div>
 
             <div class="footer-year">
-                © <span id="year"></span> xiive Studio
+                © <span id="year"></span> xiive studio
             </div>
 
         </footer>
