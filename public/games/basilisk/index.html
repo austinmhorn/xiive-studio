@@ -362,82 +362,124 @@
                 </p>
             </div>
 
-            <div class="basilisk-download-grid">
+            <div class="basilisk-download-list">
 
-                <article class="basilisk-download-card game-reveal">
-                    <div class="basilisk-download-card-head">
-                        <span class="basilisk-download-platform">macOS</span>
-                        <span class="basilisk-download-badge">Recommended</span>
-                    </div>
+                <article class="basilisk-download-row game-reveal">
+                    <div class="basilisk-download-meta">
+                        <div class="basilisk-download-heading">
+                            <div class="basilisk-download-platform-line">
+                                <span class="basilisk-platform-mark basilisk-platform-mark-macos" aria-hidden="true">⌘</span>
+                                <span class="basilisk-download-kicker">Recommended install</span>
+                            </div>
+                            <h3>macOS</h3>
+                        </div>
 
-                    <div class="basilisk-download-copy">
-                        <strong>Install with Terminal</strong>
-                        <span>
-                            Installs the current build to Applications and launches
-                            Basilisk.
-                        </span>
-                    </div>
+                        <p>
+                            Install the current Basilisk build to Applications,
+                            prepare it for first launch, and open the game.
+                        </p>
 
-                    <div class="basilisk-install-command">
-                        <code>curl -fsSL https://xiivestudio.com/install-basilisk-macos.sh | bash</code>
-                        <button
-                            type="button"
-                            class="basilisk-copy-button"
-                            data-copy-command="curl -fsSL https://xiivestudio.com/install-basilisk-macos.sh | bash"
-                            aria-label="Copy macOS install command"
+                        <a
+                            class="basilisk-manual-download"
+                            href="https://github.com/austinmhorn/basilisk/releases/download/current-build/Basilisk-macOS.dmg"
                         >
-                            Copy
-                        </button>
+                            Manual DMG download <span aria-hidden="true">↓</span>
+                        </a>
                     </div>
 
-                    <a
-                        class="basilisk-manual-download"
-                        href="https://github.com/austinmhorn/basilisk/releases/download/current-build/Basilisk-macOS.dmg"
-                    >
-                        Manual download: DMG <span aria-hidden="true">↓</span>
-                    </a>
+                    <div class="basilisk-command-shell">
+                        <div class="basilisk-command-topbar">
+                            <div class="basilisk-command-shell-label">
+                                <span class="basilisk-command-shell-icon" aria-hidden="true">&lt;/&gt;</span>
+                                <span class="basilisk-command-label">Bash</span>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="basilisk-copy-icon-button"
+                                data-copy-command="curl -fsSL https://xiivestudio.com/install-basilisk-macos.sh | bash"
+                                aria-label="Copy macOS install command"
+                            >
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <rect x="8.5" y="8.5" width="11" height="11" rx="2.5"></rect>
+                                    <path d="M15.5 8.5V6.75A2.25 2.25 0 0 0 13.25 4.5h-6.5A2.25 2.25 0 0 0 4.5 6.75v6.5a2.25 2.25 0 0 0 2.25 2.25H8.5"></path>
+                                </svg>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+
+                        <pre class="basilisk-command-code"><code><span class="token-cmd">curl</span> <span class="token-flag">-fsSL</span> <span class="token-url">https://xiivestudio.com/install-basilisk-macos.sh</span> <span class="token-pipe">|</span> <span class="token-exec">bash</span></code></pre>
+
+                        <div class="basilisk-command-foot">
+                            <span>Paste into Terminal and press Return</span>
+                            <span>macOS 14+</span>
+                        </div>
+                    </div>
                 </article>
 
-                <article class="basilisk-download-card game-reveal">
-                    <div class="basilisk-download-card-head">
-                        <span class="basilisk-download-platform">Windows</span>
-                        <span class="basilisk-download-badge">Recommended</span>
-                    </div>
+                <article class="basilisk-download-row game-reveal">
+                    <div class="basilisk-download-meta">
+                        <div class="basilisk-download-heading">
+                            <div class="basilisk-download-platform-line">
+                                <span class="basilisk-platform-mark basilisk-platform-mark-windows" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M3 4.5 10.5 3v8H3zM11.5 2.8 21 1.5V11h-9.5zM3 12h7.5v8L3 18.5zM11.5 12H21v9.5l-9.5-1.3z"></path>
+                                    </svg>
+                                </span>
+                                <span class="basilisk-download-kicker">Recommended install</span>
+                            </div>
+                            <h3>Windows</h3>
+                        </div>
 
-                    <div class="basilisk-download-copy">
-                        <strong>Install with PowerShell</strong>
-                        <span>
-                            Installs the current build for your user, adds a Start Menu
-                            shortcut, and launches Basilisk.
-                        </span>
-                    </div>
+                        <p>
+                            Install the current Basilisk build for your user,
+                            add a Start Menu shortcut, and launch the game.
+                        </p>
 
-                    <div class="basilisk-install-command">
-                        <code>irm https://xiivestudio.com/install-basilisk-windows.ps1 | iex</code>
-                        <button
-                            type="button"
-                            class="basilisk-copy-button"
-                            data-copy-command="irm https://xiivestudio.com/install-basilisk-windows.ps1 | iex"
-                            aria-label="Copy Windows install command"
+                        <a
+                            class="basilisk-manual-download"
+                            href="https://github.com/austinmhorn/basilisk/releases/download/current-build/Basilisk-Windows.zip"
                         >
-                            Copy
-                        </button>
+                            Manual ZIP download <span aria-hidden="true">↓</span>
+                        </a>
                     </div>
 
-                    <a
-                        class="basilisk-manual-download"
-                        href="https://github.com/austinmhorn/basilisk/releases/download/current-build/Basilisk-Windows.zip"
-                    >
-                        Manual download: ZIP <span aria-hidden="true">↓</span>
-                    </a>
+                    <div class="basilisk-command-shell">
+                        <div class="basilisk-command-topbar">
+                            <div class="basilisk-command-shell-label">
+                                <span class="basilisk-command-shell-icon" aria-hidden="true">&lt;/&gt;</span>
+                                <span class="basilisk-command-label">PowerShell</span>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="basilisk-copy-icon-button"
+                                data-copy-command="irm https://xiivestudio.com/install-basilisk-windows.ps1 | iex"
+                                aria-label="Copy Windows install command"
+                            >
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <rect x="8.5" y="8.5" width="11" height="11" rx="2.5"></rect>
+                                    <path d="M15.5 8.5V6.75A2.25 2.25 0 0 0 13.25 4.5h-6.5A2.25 2.25 0 0 0 4.5 6.75v6.5a2.25 2.25 0 0 0 2.25 2.25H8.5"></path>
+                                </svg>
+                                <span>Copy</span>
+                            </button>
+                        </div>
+
+                        <pre class="basilisk-command-code"><code><span class="token-cmd">irm</span> <span class="token-url token-url-alt">https://xiivestudio.com/install-basilisk-windows.ps1</span> <span class="token-pipe">|</span> <span class="token-exec">iex</span></code></pre>
+
+                        <div class="basilisk-command-foot">
+                            <span>Paste into PowerShell and press Enter</span>
+                            <span>No admin required</span>
+                        </div>
+                    </div>
                 </article>
 
             </div>
 
             <p class="basilisk-download-note game-reveal">
-                Pre-alpha desktop builds are unsigned. The recommended installers
-                prepare the current build for your platform automatically. Raw DMG
-                and ZIP packages remain available above as manual fallbacks.
+                Pre-alpha desktop builds are currently unsigned. The recommended
+                installers automate the platform-specific setup steps. Manual
+                packages remain available as a fallback.
             </p>
 
             <p class="basilisk-copy-status" data-copy-status aria-live="polite"></p>
