@@ -364,40 +364,83 @@
 
             <div class="basilisk-download-grid">
 
-                <a
-                    class="basilisk-download-card game-reveal"
-                    href="https://github.com/austinmhorn/basilisk/releases/download/current-build/Basilisk-macOS.dmg"
-                >
-                    <span class="basilisk-download-platform">macOS</span>
-
-                    <div>
-                        <strong>Download for macOS</strong>
-                        <span>DMG / CURRENT BUILD</span>
+                <article class="basilisk-download-card game-reveal">
+                    <div class="basilisk-download-card-head">
+                        <span class="basilisk-download-platform">macOS</span>
+                        <span class="basilisk-download-badge">Recommended</span>
                     </div>
 
-                    <b aria-hidden="true">↓</b>
-                </a>
-
-                <a
-                    class="basilisk-download-card game-reveal"
-                    href="https://github.com/austinmhorn/basilisk/releases/download/current-build/Basilisk-Windows.zip"
-                >
-                    <span class="basilisk-download-platform">Windows</span>
-
-                    <div>
-                        <strong>Download for Windows</strong>
-                        <span>ZIP / CURRENT BUILD</span>
+                    <div class="basilisk-download-copy">
+                        <strong>Install with Terminal</strong>
+                        <span>
+                            Installs the current build to Applications and launches
+                            Basilisk.
+                        </span>
                     </div>
 
-                    <b aria-hidden="true">↓</b>
-                </a>
+                    <div class="basilisk-install-command">
+                        <code>curl -fsSL https://xiivestudio.com/install-basilisk-macos.sh | bash</code>
+                        <button
+                            type="button"
+                            class="basilisk-copy-button"
+                            data-copy-command="curl -fsSL https://xiivestudio.com/install-basilisk-macos.sh | bash"
+                            aria-label="Copy macOS install command"
+                        >
+                            Copy
+                        </button>
+                    </div>
+
+                    <a
+                        class="basilisk-manual-download"
+                        href="https://github.com/austinmhorn/basilisk/releases/download/current-build/Basilisk-macOS.dmg"
+                    >
+                        Manual download: DMG <span aria-hidden="true">↓</span>
+                    </a>
+                </article>
+
+                <article class="basilisk-download-card game-reveal">
+                    <div class="basilisk-download-card-head">
+                        <span class="basilisk-download-platform">Windows</span>
+                        <span class="basilisk-download-badge">Recommended</span>
+                    </div>
+
+                    <div class="basilisk-download-copy">
+                        <strong>Install with PowerShell</strong>
+                        <span>
+                            Installs the current build for your user, adds a Start Menu
+                            shortcut, and launches Basilisk.
+                        </span>
+                    </div>
+
+                    <div class="basilisk-install-command">
+                        <code>irm https://xiivestudio.com/install-basilisk-windows.ps1 | iex</code>
+                        <button
+                            type="button"
+                            class="basilisk-copy-button"
+                            data-copy-command="irm https://xiivestudio.com/install-basilisk-windows.ps1 | iex"
+                            aria-label="Copy Windows install command"
+                        >
+                            Copy
+                        </button>
+                    </div>
+
+                    <a
+                        class="basilisk-manual-download"
+                        href="https://github.com/austinmhorn/basilisk/releases/download/current-build/Basilisk-Windows.zip"
+                    >
+                        Manual download: ZIP <span aria-hidden="true">↓</span>
+                    </a>
+                </article>
 
             </div>
 
             <p class="basilisk-download-note game-reveal">
-                Pre-alpha desktop builds. Prefer instant access? The browser build
-                remains available through Play Basilisk.
+                Pre-alpha desktop builds are unsigned. The recommended installers
+                prepare the current build for your platform automatically. Raw DMG
+                and ZIP packages remain available above as manual fallbacks.
             </p>
+
+            <p class="basilisk-copy-status" data-copy-status aria-live="polite"></p>
 
         </section>
 
