@@ -120,6 +120,78 @@ if (!reduceMotion && basiliskVideos.length) {
 
 
 // ------------------------------------------
+// Installer command copy
+// ------------------------------------------
+
+const copyButtons = document.querySelectorAll("[data-copy-command]");
+const copyStatus = document.querySelector("[data-copy-status]");
+
+const fallbackCopyText = (text) => {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.setAttribute("readonly", "");
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+    document.body.appendChild(textarea);
+    textarea.select();
+    const copied = document.execCommand("copy");
+    textarea.remove();
+    return copied;
+};
+
+const copyInstallCommand = async (button) => {
+    const command = button.dataset.copyCommand;
+
+    if (!command) {
+        return;
+    }
+
+    let copied = false;
+
+    try {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(command);
+            copied = true;
+        } else {
+            copied = fallbackCopyText(command);
+        }
+    } catch {
+        copied = fallbackCopyText(command);
+    }
+
+    if (!copied) {
+        if (copyStatus) {
+            copyStatus.textContent = "Copy failed. Select the command and copy it manually.";
+        }
+        return;
+    }
+
+    const originalLabel = button.textContent;
+    button.textContent = "Copied";
+    button.classList.add("copied");
+
+    if (copyStatus) {
+        copyStatus.textContent = "Install command copied to clipboard.";
+    }
+
+    window.setTimeout(() => {
+        button.textContent = originalLabel;
+        button.classList.remove("copied");
+
+        if (copyStatus) {
+            copyStatus.textContent = "";
+        }
+    }, 1800);
+};
+
+copyButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        void copyInstallCommand(button);
+    });
+});
+
+
+// ------------------------------------------
 // Subtle hero drift
 // ------------------------------------------
 
