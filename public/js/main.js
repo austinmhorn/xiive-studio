@@ -49,7 +49,11 @@ const hero = document.querySelector(".hero");
 const heroContent = document.querySelector(".hero-content");
 const heroGrid = document.querySelector(".hero-grid");
 
-window.addEventListener("scroll", () => {
+let heroParallaxFrameRequested = false;
+
+const updateHeroParallax = () => {
+    heroParallaxFrameRequested = false;
+
     if (!hero || !heroContent || !heroGrid) {
         return;
     }
@@ -66,7 +70,16 @@ window.addEventListener("scroll", () => {
 
     heroGrid.style.transform =
         `translateY(${scrollY * 0.03}px)`;
-});
+};
+
+window.addEventListener("scroll", () => {
+    if (heroParallaxFrameRequested) {
+        return;
+    }
+
+    heroParallaxFrameRequested = true;
+    window.requestAnimationFrame(updateHeroParallax);
+}, { passive: true });
 
 
 // ------------------------------------------
@@ -76,15 +89,33 @@ window.addEventListener("scroll", () => {
 const orb = document.querySelector(".hero-orb-one");
 
 if (orb && window.matchMedia("(pointer: fine)").matches) {
-    window.addEventListener("mousemove", (event) => {
+    let pointerX = 0;
+    let pointerY = 0;
+    let mouseFrameRequested = false;
+
+    const updateMouseAtmosphere = () => {
+        mouseFrameRequested = false;
+
         const x =
-            (event.clientX / window.innerWidth - 0.5) * 20;
+            (pointerX / window.innerWidth - 0.5) * 20;
 
         const y =
-            (event.clientY / window.innerHeight - 0.5) * 20;
+            (pointerY / window.innerHeight - 0.5) * 20;
 
         orb.style.transform =
             `translate(calc(-50% + ${x}px), ${y}px)`;
+    };
+
+    window.addEventListener("mousemove", (event) => {
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+
+        if (mouseFrameRequested) {
+            return;
+        }
+
+        mouseFrameRequested = true;
+        window.requestAnimationFrame(updateMouseAtmosphere);
     });
 }
 
