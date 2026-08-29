@@ -166,8 +166,13 @@ const copyInstallCommand = async (button) => {
         return;
     }
 
-    const originalLabel = button.textContent;
-    button.textContent = "Copied";
+    const label = button.querySelector("span");
+    const originalLabel = label?.textContent ?? "Copy";
+
+    if (label) {
+        label.textContent = "Copied";
+    }
+
     button.classList.add("copied");
 
     if (copyStatus) {
@@ -175,7 +180,10 @@ const copyInstallCommand = async (button) => {
     }
 
     window.setTimeout(() => {
-        button.textContent = originalLabel;
+        if (label) {
+            label.textContent = originalLabel;
+        }
+
         button.classList.remove("copied");
 
         if (copyStatus) {
