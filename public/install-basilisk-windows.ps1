@@ -94,7 +94,10 @@ try {
     }
 
     Write-Step "Installing Basilisk to $TargetDir ..."
-    Copy-Item -LiteralPath $ExtractDir -Destination $IncomingDir -Recurse -Force
+    New-Item -ItemType Directory -Path $IncomingDir -Force | Out-Null
+    Get-ChildItem -LiteralPath $ExtractDir -Force | ForEach-Object {
+        Copy-Item -LiteralPath $_.FullName -Destination $IncomingDir -Recurse -Force
+    }
 
     $IncomingExe = Join-Path $IncomingDir 'BasiliskGame.exe'
     if (-not (Test-Path -LiteralPath $IncomingExe -PathType Leaf)) {
