@@ -128,18 +128,31 @@ const heroContent = document.querySelector(".basilisk-hero-content");
 const heroGrid = document.querySelector(".basilisk-hero-grid");
 
 if (hero && heroContent && heroGrid && !reduceMotion) {
+    let heroDriftFrameRequested = false;
+
+    const updateHeroDrift = () => {
+        heroDriftFrameRequested = false;
+
+        const scrollY = window.scrollY;
+        const heroHeight = hero.offsetHeight;
+
+        if (scrollY > heroHeight) {
+            return;
+        }
+
+        heroContent.style.transform = `translateY(${scrollY * 0.055}px)`;
+        heroGrid.style.transform = `translateY(${scrollY * 0.025}px)`;
+    };
+
     window.addEventListener(
         "scroll",
         () => {
-            const scrollY = window.scrollY;
-            const heroHeight = hero.offsetHeight;
-
-            if (scrollY > heroHeight) {
+            if (heroDriftFrameRequested) {
                 return;
             }
 
-            heroContent.style.transform = `translateY(${scrollY * 0.055}px)`;
-            heroGrid.style.transform = `translateY(${scrollY * 0.025}px)`;
+            heroDriftFrameRequested = true;
+            window.requestAnimationFrame(updateHeroDrift);
         },
         { passive: true }
     );
