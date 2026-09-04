@@ -1,0 +1,571 @@
+/* =========================================
+   xiiveBot — guided support prototype
+   ========================================= */
+
+:root {
+    --xiive-bot-accent: var(--basilisk-gold, #e8b94f);
+    --xiive-bot-accent-bright: var(--basilisk-gold-bright, #f3c75e);
+    --xiive-bot-bg: rgba(7, 10, 13, 0.96);
+    --xiive-bot-panel: rgba(12, 17, 22, 0.97);
+    --xiive-bot-line: rgba(255, 255, 255, 0.08);
+    --xiive-bot-line-accent: rgba(232, 185, 79, 0.24);
+    --xiive-bot-text: #f3f3ef;
+    --xiive-bot-muted: rgba(243, 243, 239, 0.54);
+    --xiive-bot-faint: rgba(243, 243, 239, 0.34);
+}
+
+#xiive-bot-root {
+    position: relative;
+    z-index: 300;
+}
+
+.xiive-bot {
+    position: fixed;
+    right: clamp(16px, 2vw, 28px);
+    bottom: clamp(16px, 2vw, 28px);
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    pointer-events: none;
+}
+
+.xiive-bot * {
+    box-sizing: border-box;
+}
+
+.xiive-bot button,
+.xiive-bot input {
+    font: inherit;
+}
+
+.xiive-bot-panel {
+    width: min(390px, calc(100vw - 32px));
+    max-height: min(650px, calc(100svh - 110px));
+    margin-bottom: 12px;
+    overflow: hidden;
+    pointer-events: auto;
+    border: 1px solid var(--xiive-bot-line);
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 92% 0%, rgba(232, 185, 79, 0.08), transparent 30%),
+        linear-gradient(180deg, rgba(15, 20, 25, 0.985), rgba(7, 10, 13, 0.99));
+    box-shadow:
+        0 28px 80px rgba(0, 0, 0, 0.48),
+        0 0 0 1px rgba(255, 255, 255, 0.018) inset;
+    backdrop-filter: blur(22px);
+    transform: translateY(18px) scale(0.97);
+    transform-origin: bottom right;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+        opacity 180ms ease,
+        transform 220ms cubic-bezier(0.2, 0.75, 0.2, 1),
+        visibility 180ms ease;
+}
+
+.xiive-bot[data-open="true"] .xiive-bot-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.xiive-bot-header {
+    min-height: 76px;
+    padding: 16px 16px 15px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-bottom: 1px solid var(--xiive-bot-line);
+    background: rgba(255, 255, 255, 0.018);
+}
+
+.xiive-bot-identity,
+.xiive-bot-header-actions {
+    display: flex;
+    align-items: center;
+}
+
+.xiive-bot-identity {
+    min-width: 0;
+    gap: 11px;
+}
+
+.xiive-bot-avatar {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid var(--xiive-bot-line-accent);
+    border-radius: 12px;
+    background: rgba(232, 185, 79, 0.06);
+}
+
+.xiive-bot-avatar img,
+.xiive-bot-launcher-icon img {
+    width: 68%;
+    height: 68%;
+    object-fit: contain;
+}
+
+.xiive-bot-brand {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.xiive-bot-brand strong,
+.xiive-bot-launcher-copy strong {
+    color: var(--xiive-bot-text);
+    font-size: 0.94rem;
+    font-weight: 650;
+    line-height: 1;
+    letter-spacing: 0.02em;
+}
+
+.xiive-bot-brand span,
+.xiive-bot-launcher-copy span {
+    color: var(--xiive-bot-faint);
+    font-size: 0.66rem;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.xiive-bot-header-actions {
+    gap: 9px;
+}
+
+.xiive-bot-mode {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--xiive-bot-muted);
+    font-size: 0.62rem;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.xiive-bot-mode i {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--xiive-bot-accent);
+    box-shadow: 0 0 14px rgba(232, 185, 79, 0.65);
+}
+
+.xiive-bot-icon-button {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--xiive-bot-muted);
+    cursor: pointer;
+    transition:
+        color 150ms ease,
+        background 150ms ease,
+        border-color 150ms ease;
+}
+
+.xiive-bot-icon-button:hover,
+.xiive-bot-icon-button:focus-visible {
+    color: var(--xiive-bot-text);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--xiive-bot-line);
+    outline: none;
+}
+
+.xiive-bot-icon-button svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 1.6;
+}
+
+.xiive-bot-context {
+    padding: 11px 18px 10px;
+    border-bottom: 1px solid var(--xiive-bot-line);
+    background: rgba(0, 0, 0, 0.13);
+}
+
+.xiive-bot-context span {
+    color: var(--xiive-bot-accent);
+    font-size: 0.61rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+}
+
+.xiive-bot-body {
+    min-height: 310px;
+    max-height: min(470px, calc(100svh - 280px));
+    overflow-y: auto;
+    padding: 20px 18px 22px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+.xiive-bot-message-row {
+    display: grid;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 10px;
+    align-items: start;
+}
+
+.xiive-bot-message-mark {
+    width: 26px;
+    height: 26px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--xiive-bot-line-accent);
+    border-radius: 8px;
+    background: rgba(232, 185, 79, 0.055);
+    color: var(--xiive-bot-accent);
+    font-size: 0.68rem;
+    font-weight: 750;
+    text-transform: lowercase;
+}
+
+.xiive-bot-message {
+    padding-top: 2px;
+    color: rgba(243, 243, 239, 0.88);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.xiive-bot-command {
+    margin: 18px 0 0 36px;
+    overflow: hidden;
+    border: 1px solid var(--xiive-bot-line);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.27);
+}
+
+.xiive-bot-command[hidden] {
+    display: none;
+}
+
+.xiive-bot-command-topline {
+    padding: 8px 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid var(--xiive-bot-line);
+    color: var(--xiive-bot-faint);
+    font-size: 0.58rem;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+}
+
+.xiive-bot-command-topline span:first-child {
+    color: rgba(243, 243, 239, 0.67);
+}
+
+.xiive-bot-command code {
+    display: block;
+    padding: 12px 12px 13px;
+    overflow-x: auto;
+    color: #d9e3e7;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    font-size: 0.7rem;
+    line-height: 1.55;
+    white-space: nowrap;
+}
+
+.xiive-bot-actions {
+    margin: 20px 0 0 36px;
+    display: grid;
+    gap: 8px;
+}
+
+.xiive-bot-action {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    border: 1px solid var(--xiive-bot-line);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.025);
+    color: rgba(243, 243, 239, 0.83);
+    text-align: left;
+    cursor: pointer;
+    transition:
+        transform 150ms ease,
+        border-color 150ms ease,
+        background 150ms ease,
+        color 150ms ease;
+}
+
+.xiive-bot-action:hover,
+.xiive-bot-action:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(232, 185, 79, 0.28);
+    background: rgba(232, 185, 79, 0.055);
+    color: var(--xiive-bot-text);
+    outline: none;
+}
+
+.xiive-bot-action > span:first-child {
+    font-size: 0.79rem;
+    font-weight: 620;
+    letter-spacing: 0.01em;
+}
+
+.xiive-bot-action > span:last-child {
+    color: var(--xiive-bot-faint);
+    font-size: 0.84rem;
+    transition: transform 150ms ease, color 150ms ease;
+}
+
+.xiive-bot-action:hover > span:last-child,
+.xiive-bot-action:focus-visible > span:last-child {
+    transform: translateX(2px);
+    color: var(--xiive-bot-accent);
+}
+
+.xiive-bot-action--accent {
+    border-color: rgba(232, 185, 79, 0.26);
+    background: rgba(232, 185, 79, 0.08);
+}
+
+.xiive-bot-action--accent > span:first-child {
+    color: var(--xiive-bot-accent-bright);
+}
+
+.xiive-bot-action--quiet {
+    min-height: 38px;
+    border-color: transparent;
+    background: transparent;
+    color: var(--xiive-bot-muted);
+}
+
+.xiive-bot-status {
+    min-height: 18px;
+    margin: 12px 0 0 36px;
+    color: var(--xiive-bot-muted);
+    font-size: 0.68rem;
+    line-height: 1.35;
+}
+
+.xiive-bot-status[data-tone="success"] {
+    color: var(--xiive-bot-accent-bright);
+}
+
+.xiive-bot-status[data-tone="error"] {
+    color: #f09d93;
+}
+
+.xiive-bot-composer {
+    min-height: 54px;
+    padding: 10px 14px 10px 16px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 9px;
+    border-top: 1px solid var(--xiive-bot-line);
+    background: rgba(0, 0, 0, 0.18);
+}
+
+.xiive-bot-prompt {
+    color: var(--xiive-bot-accent);
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 1rem;
+}
+
+.xiive-bot-composer input {
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--xiive-bot-muted);
+    font-size: 0.72rem;
+}
+
+.xiive-bot-composer input:disabled {
+    opacity: 1;
+    -webkit-text-fill-color: var(--xiive-bot-faint);
+}
+
+.xiive-bot-version {
+    color: rgba(243, 243, 239, 0.22);
+    font-size: 0.54rem;
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.xiive-bot-launcher {
+    min-width: 148px;
+    height: 56px;
+    padding: 8px 13px 8px 9px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    pointer-events: auto;
+    border: 1px solid rgba(232, 185, 79, 0.24);
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 78% 20%, rgba(232, 185, 79, 0.08), transparent 38%),
+        rgba(8, 11, 14, 0.92);
+    color: var(--xiive-bot-text);
+    box-shadow:
+        0 14px 42px rgba(0, 0, 0, 0.38),
+        0 0 0 1px rgba(255, 255, 255, 0.018) inset;
+    backdrop-filter: blur(18px);
+    cursor: pointer;
+    transition:
+        transform 170ms ease,
+        border-color 170ms ease,
+        background 170ms ease,
+        box-shadow 170ms ease;
+}
+
+.xiive-bot-launcher:hover,
+.xiive-bot-launcher:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(232, 185, 79, 0.42);
+    background: rgba(13, 18, 23, 0.97);
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.44),
+        0 0 28px rgba(232, 185, 79, 0.055);
+    outline: none;
+}
+
+.xiive-bot[data-open="true"] .xiive-bot-launcher {
+    border-color: rgba(232, 185, 79, 0.34);
+}
+
+.xiive-bot-launcher-icon {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 38px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid var(--xiive-bot-line-accent);
+    border-radius: 12px;
+    background: rgba(232, 185, 79, 0.055);
+}
+
+.xiive-bot-launcher-copy {
+    min-width: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.xiive-bot-launcher-pulse {
+    width: 7px;
+    height: 7px;
+    margin-left: auto;
+    border-radius: 50%;
+    background: var(--xiive-bot-accent);
+    box-shadow: 0 0 0 0 rgba(232, 185, 79, 0.35);
+    animation: xiive-bot-pulse 2.4s ease-out infinite;
+}
+
+@keyframes xiive-bot-pulse {
+    0%, 45% {
+        box-shadow: 0 0 0 0 rgba(232, 185, 79, 0.28);
+    }
+
+    75%, 100% {
+        box-shadow: 0 0 0 8px rgba(232, 185, 79, 0);
+    }
+}
+
+@media (max-width: 700px) {
+    .xiive-bot {
+        right: 12px;
+        bottom: 12px;
+    }
+
+    .xiive-bot-panel {
+        width: calc(100vw - 24px);
+        max-height: calc(100svh - 88px);
+        border-radius: 20px;
+    }
+
+    .xiive-bot-body {
+        min-height: 280px;
+        max-height: calc(100svh - 270px);
+    }
+
+    .xiive-bot-launcher {
+        min-width: 54px;
+        width: 54px;
+        height: 54px;
+        padding: 7px;
+        justify-content: center;
+        border-radius: 17px;
+    }
+
+    .xiive-bot-launcher-icon {
+        width: 38px;
+        height: 38px;
+        flex-basis: 38px;
+    }
+
+    .xiive-bot-launcher-copy,
+    .xiive-bot-launcher-pulse {
+        display: none;
+    }
+
+    .xiive-bot-version {
+        display: none;
+    }
+
+    .xiive-bot-composer {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 420px) {
+    .xiive-bot-header {
+        padding-left: 15px;
+    }
+
+    .xiive-bot-mode {
+        display: none;
+    }
+
+    .xiive-bot-body {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .xiive-bot-actions,
+    .xiive-bot-command,
+    .xiive-bot-status {
+        margin-left: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .xiive-bot-panel,
+    .xiive-bot-launcher,
+    .xiive-bot-action,
+    .xiive-bot-action > span:last-child {
+        transition: none;
+    }
+
+    .xiive-bot-launcher-pulse {
+        animation: none;
+    }
+}

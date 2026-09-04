@@ -237,3 +237,16 @@ if (hero && heroContent && heroGrid && !reduceMotion) {
         { passive: true }
     );
 }
+
+
+// ------------------------------------------
+// xiive guided assistant prototype
+// ------------------------------------------
+
+import("/js/xiiveBot.js")
+    .then(({ mountXiiveBot }) => {
+        mountXiiveBot({ context: "basilisk" });
+    })
+    .catch((error) => {
+        console.error("Unable to mount xiiveBot.", error);
+    });
