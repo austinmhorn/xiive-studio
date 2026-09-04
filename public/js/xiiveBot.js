@@ -210,10 +210,6 @@ const getMarkup = () => `
                 </div>
             </header>
 
-            <div class="xiive-bot-context">
-                <span data-xiive-bot-eyebrow>BASILISK / GUIDED SUPPORT</span>
-            </div>
-
             <div class="xiive-bot-body" data-xiive-bot-body>
                 <div class="xiive-bot-message-row">
                     <span class="xiive-bot-message-mark" aria-hidden="true">x</span>
@@ -231,18 +227,6 @@ const getMarkup = () => `
                 <div class="xiive-bot-actions" data-xiive-bot-actions></div>
                 <p class="xiive-bot-status" data-xiive-bot-status aria-live="polite"></p>
             </div>
-
-            <footer class="xiive-bot-composer">
-                <span class="xiive-bot-prompt" aria-hidden="true">›</span>
-                <input
-                    type="text"
-                    value=""
-                    placeholder="Guided mode — choose an option"
-                    aria-label="xiive assistant guided mode"
-                    disabled
-                >
-                <span class="xiive-bot-version">prototype / 01</span>
-            </footer>
         </section>
 
         <button class="xiive-bot-launcher" type="button" data-xiive-bot-launcher aria-label="Open xiive assistant" aria-expanded="false">
@@ -285,7 +269,6 @@ export const mountXiiveBot = ({ context = "basilisk" } = {}) => {
     const panel = root.querySelector("[data-xiive-bot-panel]");
     const launcher = root.querySelector("[data-xiive-bot-launcher]");
     const closeButton = root.querySelector("[data-xiive-bot-close]");
-    const eyebrow = root.querySelector("[data-xiive-bot-eyebrow]");
     const message = root.querySelector("[data-xiive-bot-message]");
     const actions = root.querySelector("[data-xiive-bot-actions]");
     const status = root.querySelector("[data-xiive-bot-status]");
@@ -315,7 +298,6 @@ export const mountXiiveBot = ({ context = "basilisk" } = {}) => {
         const node = FLOW[nodeName] ?? FLOW.home;
         currentNode = nodeName in FLOW ? nodeName : "home";
 
-        eyebrow.textContent = node.eyebrow;
         message.textContent = node.message;
         actions.replaceChildren(...node.actions.map(createButton));
         setStatus("");
