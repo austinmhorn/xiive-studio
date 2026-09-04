@@ -3,9 +3,9 @@
 // ==========================================
 
 const XIIVE_BOT_LINKS = Object.freeze({
-    review: "https://pebble-salsa-c78.notion.site/3d0ce647c49280a1a735fd4b04b0bb22?pvs=105",
-    bug: "https://pebble-salsa-c78.notion.site/3d1ce647c49280e993f9fdd1338d71b0?pvs=105",
-    contact: "https://pebble-salsa-c78.notion.site/3d1ce647c49280839344f6cc6b125108?pvs=105",
+    review: "https://xiivestudio.notion.site/3d0ce647c49280a1a735fd4b04b0bb22?pvs=105",
+    bug: "https://xiivestudio.notion.site/3d1ce647c49280e993f9fdd1338d71b0?pvs=105",
+    contact: "https://xiivestudio.notion.site/3d1ce647c49280839344f6cc6b125108?pvs=105",
     play: "https://play.xiivestudio.com",
     github: "https://github.com/austinmhorn"
 });
