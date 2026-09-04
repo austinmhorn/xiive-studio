@@ -5,6 +5,7 @@
 const XIIVE_BOT_LINKS = Object.freeze({
     review: "https://pebble-salsa-c78.notion.site/3d0ce647c49280a1a735fd4b04b0bb22?pvs=105",
     bug: "https://pebble-salsa-c78.notion.site/3d1ce647c49280e993f9fdd1338d71b0?pvs=105",
+    contact: "https://pebble-salsa-c78.notion.site/3d1ce647c49280839344f6cc6b125108?pvs=105",
     play: "https://play.xiivestudio.com",
     github: "https://github.com/austinmhorn"
 });
@@ -102,15 +103,6 @@ const FLOW = Object.freeze({
             createAction("Play current build", "open-play", { tone: "accent" }),
             createAction("Leave gameplay feedback", "review"),
             createAction("Back", "help", { tone: "quiet" })
-        ]
-    },
-    contact: {
-        eyebrow: "xiive / CONTACT",
-        message: "Direct contact is the next xiive-level path I want to wire into this assistant. For the prototype, you can leave general feedback through the review form or jump to GitHub.",
-        actions: [
-            createAction("Leave feedback", "review", { tone: "accent" }),
-            createAction("Open GitHub", "open-github"),
-            createAction("Back", "home", { tone: "quiet" })
         ]
     }
 });
@@ -337,6 +329,10 @@ export const mountXiiveBot = ({ context = "basilisk" } = {}) => {
             case "review":
                 openExternal(XIIVE_BOT_LINKS.review);
                 setStatus("Review form opened in a new tab.", "success");
+                return;
+            case "contact":
+                openExternal(XIIVE_BOT_LINKS.contact);
+                setStatus("Contact form opened in a new tab.", "success");
                 return;
             case "open-play":
                 openExternal(XIIVE_BOT_LINKS.play);
